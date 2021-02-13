@@ -12,11 +12,15 @@ import 'database_connection_configuration.dart';
 import '../database/i_database_connection.dart';
 import '../../repositories/menu/i_menu_repository.dart';
 import '../../services/menu/i_menu_sevice.dart';
+import '../../repositories/order/i_orders_repository.dart';
+import '../../services/order/i_orders_service.dart';
 import '../../repositories/user/i_user_repository.dart';
 import '../../services/user/i_user_service.dart';
 import '../../modules/menus/controllers/menu_controller.dart';
 import '../../repositories/menu/menu_repository.dart';
 import '../../services/menu/menu_sevice.dart';
+import '../../repositories/order/orders_repository.dart';
+import '../../services/order/orders_service.dart';
 import '../../modules/users/controller/user_controller.dart';
 import '../../repositories/user/user_repository.dart';
 import '../../services/user/user_service.dart';
@@ -35,6 +39,10 @@ GetIt $initGetIt(
   gh.lazySingleton<IMenuRepository>(
       () => MenuRepository(get<IDatabaseConnection>()));
   gh.lazySingleton<IMenuSevice>(() => MenuSevice(get<IMenuRepository>()));
+  gh.lazySingleton<IOrdersRepository>(
+      () => OrdersRepository(get<IDatabaseConnection>()));
+  gh.lazySingleton<IOrdersService>(
+      () => OrdersService(get<IOrdersRepository>()));
   gh.lazySingleton<IUserRepository>(
       () => UserRepository(get<IDatabaseConnection>()));
   gh.lazySingleton<IUserService>(() => UserService(get<IUserRepository>()));
