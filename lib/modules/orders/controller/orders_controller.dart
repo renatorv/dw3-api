@@ -29,7 +29,14 @@ class OrdersController {
     }
   }
 
+  @Route.get('/user/<userId>')
+  Future<Response> find(Request request, String userId) async {
+    final orders = await _service.findMyOrders(int.parse(userId));
+
+    final orderResponse = orders.map((o) => o.toMap()).toList();
+
+    return Response.ok(jsonEncode(orderResponse));
+  }
+
   Router get router => _$OrdersControllerRouter(this);
 }
-
-parei em 36 minutos

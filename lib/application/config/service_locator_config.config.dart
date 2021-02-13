@@ -19,6 +19,7 @@ import '../../services/user/i_user_service.dart';
 import '../../modules/menus/controllers/menu_controller.dart';
 import '../../repositories/menu/menu_repository.dart';
 import '../../services/menu/menu_sevice.dart';
+import '../../modules/orders/controller/orders_controller.dart';
 import '../../repositories/order/orders_repository.dart';
 import '../../services/order/orders_service.dart';
 import '../../modules/users/controller/user_controller.dart';
@@ -47,6 +48,7 @@ GetIt $initGetIt(
       () => UserRepository(get<IDatabaseConnection>()));
   gh.lazySingleton<IUserService>(() => UserService(get<IUserRepository>()));
   gh.factory<MenuController>(() => MenuController(get<IMenuSevice>()));
+  gh.factory<OrdersController>(() => OrdersController(get<IOrdersService>()));
   gh.factory<UserController>(() => UserController(get<IUserService>()));
   return get;
 }
