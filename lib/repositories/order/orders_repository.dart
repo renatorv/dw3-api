@@ -80,7 +80,7 @@ class OrdersRepository implements IOrdersRepository {
 
           final orderItemsResult = await conn.query('''
           select
-          *
+          p.id_pedido_item, item.id_cardapio_grupo_item, item.nome, item.valor
           from pedido_item p
           inner join cardapio_grupo_item item on item.id_cardapio_grupo_item = p.id_cardapio_grupo_item
           where p.id_pedido = ?
